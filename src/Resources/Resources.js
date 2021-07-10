@@ -320,6 +320,108 @@ const ResourcesList = [
 		name: "Difference between C and C++",
 		topic: ['C', 'C++'],
 		link: "https://www.geeksforgeeks.org/difference-between-c-and-c/"
-	}
+	},
+	{
+		name:"Basic Concepts",
+		topic: ["Java"],
+		link: 'https://www.guru99.com/java-oops-concept.html'
+	},
+	{
+		name:"Classes and Object Creation in java",
+		topic: ["Java"],
+		link: 'https://www.w3schools.com/java/java_classes.asp'
+	},
+	{
+		name:"Keywords in Java",
+		topic: ["Java"],
+		link: 'https://www.youtube.com/watch?v=yLhVhi4rxsA&list=PLqM7alHXFySF5ErEHA1BXgibGg7uqmA4_&index=2'
+	},
+	{
+		name:"While Loop in Java",
+		topic: ["Java"],
+		link: 'https://www.youtube.com/watch?v=xBJ44A1FCTE&list=PLqM7alHXFySF5ErEHA1BXgibGg7uqmA4_&index=3'
+	},
+	{
+		name:"For each Loop in Java",
+		topic: ["Java"],
+		link: 'https://www.youtube.com/watch?v=DUVqtwVJ3DI&list=PLqM7alHXFySF5ErEHA1BXgibGg7uqmA4_&index=6'
+	},
+	{
+		name:"Do While Loop",
+		topic: ["Java"],
+		link: 'https://www.youtube.com/watch?v=8AmQkU9AhpU&list=PLqM7alHXFySF5ErEHA1BXgibGg7uqmA4_&index=4'
+	},
+	{
+		name:"For  Loop in Java",
+		topic: ["Java"],
+		link: 'https://www.youtube.com/watch?v=JkSQ8KtOA14&list=PLqM7alHXFySF5ErEHA1BXgibGg7uqmA4_&index=5'
+	},
+	{
+		name:"Packages in Java",
+		topic: ["Java"],
+		link: 'https://www.youtube.com/watch?v=fhWCG4G1oHY&list=PLqM7alHXFySF5ErEHA1BXgibGg7uqmA4_&index=16'
+	},
+	{
+		name:"Inheritence in Java",
+		topic: ["Java"],
+		link: 'https://www.geeksforgeeks.org/inheritance-in-java/'
+	},
+	{
+		name:"Polymorphism",
+		topic: ["Java"],
+		link: 'https://www.youtube.com/watch?v=wNc00u-3EYI'
+	},
+	{
+		name:"Exception Handling in Java",
+		topic: ["Java"],
+		link: 'https://www.youtube.com/watch?v=8WTVLa1Xtsk'
+
+	},
+	{
+		name:"Abstraction in Java",
+		topic: ["Java"],
+		link: 'https://www.softwaretestinghelp.com/what-is-abstraction-in-java/'
+	},
+	{
+		name:"Collection Framework",
+		topic: ["Java"],
+		link: 'https://www.javatpoint.com/collections-in-java'
+	},
+	{
+		name:"ArrayList in Java",
+		topic: ["Java"],
+		link: 'https://www.w3schools.com/java/java_arraylist.asp'
+	},
+	{
+		name:"LinkedList in Java",
+		topic: ["Java"],
+		link: 'https://www.w3schools.com/java/java_linkedlist.asp'
+	},
+	{
+		name:"HashMap in Java",
+		topic: ["Java"],
+		link: 'https://www.w3schools.com/java/java_hashmap.asp'
+	},
+
+	{
+		name:"Multithreading",
+		topic: ["Java"],
+		link: 'https://www.javatpoint.com/multithreading-in-java'
+	},
+	{
+		name:"Synchronisation",
+		topic: ["Java"],
+		link: 'https://www.geeksforgeeks.org/synchronized-in-java/'
+	},
+	{
+		name:"Session Management in Java",
+		topic: ["Java"],
+		link: 'https://medium.com/@kasunpdh/session-management-in-java-using-servlet-filters-and-cookies-7c536b40448f'
+	},
+	{
+		name:"Interfaces in Java",
+		topic: ["Java"],
+		link: 'https://www.youtube.com/watch?v=8ZdbOOCqEII&list=PLqM7alHXFySF5ErEHA1BXgibGg7uqmA4_&t=3s'
+	},
 ]
 export default ResourcesList
