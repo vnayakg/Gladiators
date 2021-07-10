@@ -3,8 +3,19 @@ import axios from 'axios'
 
 import Editor from './components/Editor';
 import SelectOption from './components/SelectOption';
+import NotesList from './components/NotesList';
+import Search from './components/Search';
+import Header from './components/Header';
+import LogOut from './components/LogOut'
+import LoginPage from './components/Login'
+import Register from './components/Register'
+import PersistentDrawerLeft from './components/Drawer';
+import CardList from './components/CardList';
+import Home from './components/Home'
 
 import { fontSizes, languageToEditorMode, themes } from './config/EditorOptions'
+import ResourcesList from './Resources/Resources'
+import { navbarList, signInList } from './utility/NavUtil'
 
 import './App.css';
 
@@ -31,6 +42,52 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [userId, setUserId] = useState('');
   const [resLang, setResLang] = useState('')
+
+  const loadNotes = () => {
+    axios.get(`https://mighty-wildwood-39449.herokuapp.com/notes/${userId}`)
+      .then(res => {
+        const savedNotes = res.data
+        if (savedNotes) {
+          setNotes(savedNotes);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  }
+
+
+  const addNote = (text) => {
+    const date = new Date();
+    const newNote = {
+      id: userId,
+      text: text,
+      noteId: nanoid(),
+      timestamp: date.toLocaleDateString(),
+    };
+
+    axios.post(`https://mighty-wildwood-39449.herokuapp.com/note`, newNote)
+      .then(res => {
+        const newNotes = [...notes, newNote];
+        setNotes(newNotes);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+  };
+
+  const deleteNote = (id) => {
+    axios.delete(`https://mighty-wildwood-39449.herokuapp.com/note/${id}`,)
+      .then(res => {
+        console.log(res)
+        const newNotes = notes.filter((note) => note.noteId !== id);
+        setNotes(newNotes);
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  };
+
 
   const fileInput = useRef(null);
 
@@ -141,6 +198,44 @@ function App() {
   const handleUpdateInput = (value) => {
     setInput(value);
   };
+
+  const Notes = () => {
+
+    return (
+      <div className={`${darkMode && 'dark-mode'}`} >
+        <Header handleToggleDarkMode={setDarkMode} />
+        <Search handleSearchNote={setSearchText} />
+        <NotesList
+          notes={notes.filter((note) =>
+            note.text.toLowerCase().includes(searchText)
+          )}
+          handleAddNote={addNote}
+          handleDeleteNote={deleteNote}
+        />
+      </div>
+    )
+  }
+
+
+  const Resources = () => {
+    return (
+      <div>
+        <Search handleSearchNote={setResLang} />
+        {
+
+          ["Java", "Python", "C", "C++", "Javascript"].map((lang, ind) => {
+
+            return (
+              <button className="btn btn-outline-primary mx-3 my-3" value={lang} onClick={(lang) => setResLang(lang.target.innerText)} key={ind}><b>{lang}</b></button>
+            )
+          })
+
+        }
+
+        <CardList resources={ResourcesList.filter(itm => (resLang.toLowerCase().includes(itm.name.toLowerCase()) || resLang.toLowerCase().includes(itm.topic[0].toLowerCase())))} />
+      </div>
+    )
+  }
 
 
   return (
