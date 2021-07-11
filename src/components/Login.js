@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { db, storage } from '../config/firebase'
+import { compareSync } from 'bcryptjs'
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -30,26 +32,33 @@ class LoginPage extends React.Component {
 
         const { username, password } = this.state;
         if (username && password) {
-            axios.post('http://localhost:5000/login', {
-                username: username,
-                password: password
-            })
-                .then(res => {
 
-                    console.log(res.data)
-                    if (res.data.auth === true) {
+            const userRef = db.collection('users');
+            userRef.where('email', '==', username).get()
+                .then(sn => {
+                    if (sn.empty) {
 
-                        //localStorage.setItem('auth', res.data.id)
-                        this.props.history.push('/')
-                        this.props.setIsLoggedIn(true)
-                        this.props.setUserId(res.data.id)
+                        alert("Please register and then login")
                     }
                     else {
-                        alert("Wrong credintials")
+                        sn.forEach(s => {
+                            if (s.data().email === username && s.data().password=== password) {
+                                alert('login success')
+                                this.props.history.push('/')
+                                this.props.setIsLoggedIn(true)
+                                this.props.setUserId(s.data().id)
+                            }
+                            else {
+                                alert('wrong credintials')
+                            }
+
+                        })
+
+
                     }
                 })
                 .catch(err => {
-                    console.log(err)
+                    console.log("Error Occured")
                 })
         }
     }

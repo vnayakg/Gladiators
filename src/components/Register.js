@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios'
+import { db, storage } from '../config/firebase'
+import { v4 as uuidv4 } from 'uuid'
 
 class Register extends React.Component {
     constructor(props) {
@@ -37,24 +39,34 @@ class Register extends React.Component {
         this.setState({ submitted: true });
         const { user } = this.state;
         if (user.firstName && user.lastName && user.username && user.password) {
-            axios.post('http://localhost:5000/register', {
-                name: user.firstName + " " + user.lastName,
-                username: user.username,
-                password: user.password
-            })
-                .then(res => {
-                    console.log(res)
-                    if (res.data.registerStatus === true) {
-                        alert("Registration Successfull")
-                        this.props.history.push('/login')
+            const userRef = db.collection('users');
+            userRef.where('email', '==', user.username).get()
+                .then(sn => {
+                    if (sn.empty) {
+                        const id = uuidv4()
+                        db.collection('users').doc(id).set({
+                            id: id,
+                            name: user.firstName + " " + user.lastName,
+                            email: user.username,
+                            password: user.password,
+                            timestamp: new Date()
+                        }).then(res => {
+                            alert("Registration Successfull")
+                            this.props.history.push('/login')
+                        })
+                            .catch(err => {
+                                alert('Error occured')
+                            })
+
                     }
-                    else{
-                        alert(res.data)
+                    else {
+                        alert("user already exists")
                     }
                 })
                 .catch(err => {
-                    console.log(err)
+                    console.log("Error Occured")
                 })
+
         }
     }
 
