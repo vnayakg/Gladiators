@@ -18,12 +18,18 @@
 
 2. **Editor** - The code gets scanned and then would be converted to text in the editor. The code in the editor can then be compiled and the user gets the output of    the code. There are multiple languages like C, CPP, Java, Python, etc in the code editor.
  <img src="https://github.com/vinayak-gaikwad/Gladiators/blob/main/Screenshots%20Quick%20Code/IMG_20210711_161129.jpg" height="300">
+ <img src"https://user-images.githubusercontent.com/58037628/125192833-5aee2f00-e267-11eb-974e-cf69800e4a45.png" height="300">
+ <img src="https://user-images.githubusercontent.com/58037628/125192872-7fe2a200-e267-11eb-9510-a796b388af33.png" height="250">
+
 3. **Resources** - There are many resources available for multiple languages in this option.
 <img src="https://github.com/vinayak-gaikwad/Gladiators/blob/main/Screenshots%20Quick%20Code/IMG_20210711_161234.jpg"  height="300" >
 
 4. **Notes** - The user can note down important details or any related points of the code in the notes section.
 <img src="https://github.com/vinayak-gaikwad/Gladiators/blob/main/Screenshots%20Quick%20Code/IMG_20210711_161329.jpg"  height="300" >
 <img src="https://github.com/vinayak-gaikwad/Gladiators/blob/main/Screenshots%20Quick%20Code/IMG_20210711_161344.jpg" height="300" >
+
+
+
 
 ### How to run the code 
 
