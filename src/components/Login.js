@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { db, storage } from '../config/firebase'
-import { compareSync } from 'bcryptjs'
 
 class LoginPage extends React.Component {
     constructor(props) {

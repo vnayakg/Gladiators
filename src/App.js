@@ -12,10 +12,12 @@ import Register from './components/Register'
 import PersistentDrawerLeft from './components/Drawer';
 import CardList from './components/CardList';
 import Home from './components/Home'
-
+import { db, storage } from './config/firebase';
+import {Switch, Redirect} from 'react-router-dom'
 import { fontSizes, languageToEditorMode, themes } from './config/EditorOptions'
 import ResourcesList from './Resources/Resources'
 import { navbarList, signInList } from './utility/NavUtil'
+import {nanoid} from 'nanoid'
 
 import './App.css';
 
