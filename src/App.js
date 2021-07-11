@@ -42,22 +42,28 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [userId, setUserId] = useState('');
   const [resLang, setResLang] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
 
   const loadNotes = () => {
-    axios.get(`https://mighty-wildwood-39449.herokuapp.com/notes/${userId}`)
-      .then(res => {
-        const savedNotes = res.data
+    const noteRef = db.collection('notes')
+    noteRef.where('id', '==', userId).get()
+      .then(s => {
+        let savedNotes = []
+        s.forEach(data => { savedNotes = [...savedNotes, data.data()] })
+
         if (savedNotes) {
           setNotes(savedNotes);
+
         }
       })
       .catch(err => {
-        console.log(err);
+        console.log(err)
       })
   }
 
 
   const addNote = (text) => {
+    const noteRef = db.collection('notes')
     const date = new Date();
     const newNote = {
       id: userId,
@@ -66,26 +72,29 @@ function App() {
       timestamp: date.toLocaleDateString(),
     };
 
-    axios.post(`https://mighty-wildwood-39449.herokuapp.com/note`, newNote)
-      .then(res => {
-        const newNotes = [...notes, newNote];
-        setNotes(newNotes);
-      })
+
+    db.collection('notes').doc().set(newNote).then(s => {
+      const newNotes = [...notes, newNote];
+      setNotes(newNotes);
+      alert("note added succefully")
+    })
       .catch(err => {
-        console.log(err);
+        alert("error occured")
       })
+
   };
 
   const deleteNote = (id) => {
-    axios.delete(`https://mighty-wildwood-39449.herokuapp.com/note/${id}`,)
-      .then(res => {
-        console.log(res)
+    const noteRef = db.collection('notes').where('noteId', '==', id)
+    noteRef.get()
+      .then(s => {
+        s.forEach(data => data.ref.delete())
         const newNotes = notes.filter((note) => note.noteId !== id);
         setNotes(newNotes);
       })
-      .catch(err => {
-        console.log(err)
-      })
+      .catch(err =>
+        alert("error occured")
+      )
   };
 
 
@@ -93,14 +102,33 @@ function App() {
 
   const visionAPI = () => {
     const fileName = fileInput.current.files[0]
+    setIsLoading(true)
     if (!fileName) alert("please select image")
-    const data = new FormData()
-    data.append('file', fileName)
-    axios.post('http://localhost:5000/upload', data, {})
-      .then(res => {
-        console.log(res.data.text)
-        setBody(res.data.text)
-      })
+    const uploadTask = storage.ref(`${fileName.name}`).put(fileName);
+    uploadTask.on(
+      "state_changed",
+      snapshot => { },
+      error => {
+        console.log(error);
+      },
+      () => {
+        storage
+          .ref(fileName.name)
+          .getDownloadURL()
+          .then(url => {
+            db.collection('photos').doc(fileName.name).get().then(
+              data => {
+                setBody(data.data().labels)
+                setIsLoading(false)
+              }
+            );
+
+          });
+      }
+    );
+
+
+
   }
 
   //----------Executing the code------------------
@@ -311,6 +339,12 @@ function App() {
 
                       <button class="btn btn-outline-success mx-3" onClick={visionAPI} >Get Code</button>
 
+                    </div>
+                    <div>
+                      <p><i>Note: after selecting image press get code</i></p>
+                    </div>
+                    <div>
+                      {isLoading ? <p>Loading ...</p> : null}
                     </div>
 
 
