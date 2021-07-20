@@ -3,12 +3,12 @@ import 'firebase/storage'
 import 'firebase/firestore'
 // Your web app's Firebase configuration
 var firebaseConfig = {
-  apiKey: "AIzaSyAp20z2U9Y77X_I3gaicq2DQPv8b2_a2SU",
-  authDomain: "quickcode-318508.firebaseapp.com",
-  projectId: "quickcode-318508",
-  storageBucket: "quickcode-318508-vision",
-  messagingSenderId: "789096907790",
-  appId: "1:789096907790:web:a6fa623d2ffc3e0144a85f"
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.DOMAIN_AUTH,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.BUCKET_ID,
+  messagingSenderId: process.env.SENDER_ID,
+  appId: process.env.APP_ID
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
