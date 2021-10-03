@@ -973,7 +973,7 @@ p:last-child {
   background: rgba(17, 15, 36, 0.7);
 }
 
-.overlay-shape-01:before {
+/* .overlay-shape-01:before {
   background: url(../media/bg/shape-01.svg);
 }
 
@@ -1019,10 +1019,10 @@ p:last-child {
 
 .dark.overlay-shape-06:before {
   background: url(../media/bg/shape-dark-06.svg);
-}
+} */
 
 /* Images */
-.bg-image-01:after {
+/* .bg-image-01:after {
   background: url(../media/bg/image-01@2x.jpg);
 }
 
@@ -1101,7 +1101,7 @@ p:last-child {
     background: url(../media/bg/image-08.jpg);
   }
 }
-
+*/
 .bg-image-hero:after {
   background: #05050b;
   background: -webkit-linear-gradient(#110f24 0%, #05050b 100%);
@@ -1113,7 +1113,7 @@ p:last-child {
 
 .overlay-hero:before {
   background: url(../media/bg/shape-hero.svg);
-}
+} 
 
 /* -----------------------------------------------------------------------------
 
